@@ -19,7 +19,7 @@ jobs:
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
           VM_PASSWORD: ${{ secrets.VM_PASSWORD }} 
         run: |
-          sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no "$VM_USERNAME@$VM_HOST" << 'EOF'
-            cd azure-vm-cicd
+          sshpass -p "$VM_PASSWORD" ssh -o StrictHostKeyChecking=no -t "$VM_USERNAME@$VM_HOST" "
+            cd azure-vm-cicd &&
             sudo docker-compose up --build -d
-          EOF
+          "
